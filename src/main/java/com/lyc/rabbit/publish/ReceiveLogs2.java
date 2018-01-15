@@ -4,6 +4,9 @@ import com.rabbitmq.client.*;
 
 import java.io.IOException;
 
+/**
+ * 订阅者
+ */
 public class ReceiveLogs2 {
     private static final String EXCHANGE_NAME = "logs";
 

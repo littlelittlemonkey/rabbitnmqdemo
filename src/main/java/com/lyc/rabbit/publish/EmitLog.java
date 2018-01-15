@@ -8,6 +8,10 @@ import com.rabbitmq.client.ConnectionFactory;
  * 生产者程序，他负责发送日志消息，与之前不同的是它不是将消息发送到匿名交换器中，
  * 而是发送到一个名为【logs】的交换器中。我们提供一个空字符串的routingkey，
  * 它的功能被交换器的分发类型代替了。
+ *
+ * 发布者
+ *
+ * 发布者/订阅关系，发布的消息，订阅者都能接收到
  */
 public class EmitLog {
 
