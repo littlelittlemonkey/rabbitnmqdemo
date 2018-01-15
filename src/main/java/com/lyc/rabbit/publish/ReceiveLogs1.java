@@ -32,4 +32,13 @@ public class ReceiveLogs1 {
         };
         channel.basicConsume(queueName, true, consumer);
     }
+    /**
+     *打印结果
+     [*] Waiting for messages. To exit press CTRL+C
+     [x] Received 'Hello World! 0'
+     [x] Received 'Hello World! 1'
+     [x] Received 'Hello World! 2'
+     [x] Received 'Hello World! 3'
+     [x] Received 'Hello World! 4'
+     */
 }

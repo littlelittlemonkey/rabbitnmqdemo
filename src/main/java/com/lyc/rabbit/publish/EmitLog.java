@@ -35,4 +35,12 @@ public class EmitLog {
         channel.close();
         connection.close();
     }
+    /**
+     *打印结果
+     [x] Sent 'Hello World! 0'
+     [x] Sent 'Hello World! 1'
+     [x] Sent 'Hello World! 2'
+     [x] Sent 'Hello World! 3'
+     [x] Sent 'Hello World! 4'
+     */
 }
