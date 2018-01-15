@@ -5,7 +5,9 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
-
+/**
+ * 生产/消费者 关系中，生产的一份数据，只能被其中的一个消费者获取
+ */
 public class NewTask {
 
     private static final String TASK_QUEUE_NAME = "task_queue";
