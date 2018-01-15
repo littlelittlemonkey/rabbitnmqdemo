@@ -6,9 +6,6 @@ import com.rabbitmq.client.ConnectionFactory;
 
 /**
  * 消息生产者
- *
- * @author hushuang
- *
  */
 public class P {
 

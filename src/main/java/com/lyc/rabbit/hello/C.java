@@ -6,8 +6,6 @@ import java.io.IOException;
 /**
  * 消息消费者
  *
- * @author hushuang
- *
  */
 public class C {
 
