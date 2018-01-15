@@ -1,0 +1,59 @@
+package com.lyc.rabbit.topic;
+
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.Channel;
+
+public class TopicSend {
+
+    private static final String EXCHANGE_NAME = "topic_logs";
+
+    public static void main(String[] argv) {
+        Connection connection = null;
+        Channel channel = null;
+        try {
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+
+            connection = factory.newConnection();
+            channel = connection.createChannel();
+//          声明一个匹配模式的交换器
+            channel.exchangeDeclare(EXCHANGE_NAME, "topic");
+
+            // 待发送的消息
+            String[] routingKeys = new String[]{"quick.orange.rabbit",
+                    "lazy.orange.elephant",
+                    "quick.orange.fox",
+                    "lazy.brown.fox",
+                    "quick.brown.fox",
+                    "quick.orange.male.rabbit",
+                    "lazy.orange.male.rabbit"};
+//          发送消息
+            for(String severity :routingKeys){
+                String message = "From "+severity+" routingKey' s message!";
+                channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes());
+                System.out.println("TopicSend [x] Sent '" + severity + "':'" + message + "'");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception ignore) {
+                }
+            }
+        }
+    }
+    /**
+     * 输出
+     * TopicSend [x] Sent 'quick.orange.rabbit':'From quick.orange.rabbit routingKey' s message!'
+     TopicSend [x] Sent 'lazy.orange.elephant':'From lazy.orange.elephant routingKey' s message!'
+     TopicSend [x] Sent 'quick.orange.fox':'From quick.orange.fox routingKey' s message!'
+     TopicSend [x] Sent 'lazy.brown.fox':'From lazy.brown.fox routingKey' s message!'
+     TopicSend [x] Sent 'quick.brown.fox':'From quick.brown.fox routingKey' s message!'
+     TopicSend [x] Sent 'quick.orange.male.rabbit':'From quick.orange.male.rabbit routingKey' s message!'
+     TopicSend [x] Sent 'lazy.orange.male.rabbit':'From lazy.orange.male.rabbit routingKey' s message!'
+     */
+}
